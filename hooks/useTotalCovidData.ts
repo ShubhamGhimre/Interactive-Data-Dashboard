@@ -13,7 +13,7 @@ interface TotalCovidData {
 }
 
 export default function useTotalCovidData() {
-  const [covidData, setCovidData] = useState<ChartData<'pie'> | null>(null);
+  const [covidData, setCovidData] = useState<ChartData<"pie"> | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,18 +25,27 @@ export default function useTotalCovidData() {
 
         console.log("Total COVID Data", result);
 
+        const { confirmed, deaths, active, recovered } = result.data;
+        const total = confirmed + deaths + active + recovered;
+
+        // Calculate percentages
+        const confirmedPercentage = ((confirmed / total) * 100).toFixed(2);
+        const deathsPercentage = ((deaths / total) * 100).toFixed(2);
+        const activePercentage = ((active / total) * 100).toFixed(2);
+        const recoveredPercentage = ((recovered / total) * 100).toFixed(2);
+
         // Prepare the data for Pie Chart
-        const chartData: ChartData<'pie'> = {
-          labels: ["Confirmed", "Deaths", "Active", "Recovered"],
+        const chartData: ChartData<"pie"> = {
+          labels: [
+            `Confirmed (${confirmed} - ${confirmedPercentage}%)`,
+            `Deaths (${deaths} - ${deathsPercentage}%)`,
+            `Active (${active} - ${activePercentage}%)`,
+            `Recovered (${recovered} - ${recoveredPercentage}%)`,
+          ],
           datasets: [
             {
               label: "COVID-19 Stats",
-              data: [
-                result.data.confirmed,
-                result.data.deaths,
-                result.data.active,
-                result.data.recovered,
-              ],
+              data: [confirmed, deaths, active, recovered],
               backgroundColor: [
                 "rgba(75, 192, 192, 0.6)", // Confirmed
                 "rgba(255, 99, 132, 0.6)", // Deaths
@@ -49,7 +58,6 @@ export default function useTotalCovidData() {
                 "rgba(255, 159, 64, 1)", // Active
                 "rgba(153, 102, 255, 1)", // Recovered
               ],
-              // fill: true, // Enable filling under the pie chart
             },
           ],
         };
