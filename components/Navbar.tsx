@@ -2,7 +2,7 @@ import React from "react";
 import { SidebarTrigger } from "./ui/sidebar";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import ModeSwitch from "./ModeSwitch";
+import ThemeToggle from "./Toogle";
 
 const Navbar = () => {
   return (
@@ -18,7 +18,7 @@ const Navbar = () => {
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-      <ModeSwitch />
+        <ThemeToggle />
       </div>
     </div>
   );
