@@ -4,7 +4,7 @@ import "./globals.css";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import Navbar from "@/components/Navbar";
-import { ThemeProvider } from "next-themes";
+// import { ThemeProvider } from "next-themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable}  antialiased `}
       >
-        <ThemeProvider>
+        {/* <ThemeProvider> */}
           <SidebarProvider>
             <AppSidebar />
             <main className="px-10 w-screen">
@@ -39,7 +39,7 @@ export default function RootLayout({
               {children}
             </main>
           </SidebarProvider>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );
