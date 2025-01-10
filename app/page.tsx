@@ -2,7 +2,9 @@
 export default function Home() {
   return (
     <>
-     page
+     <div className="w-full h-full shadow-md rounded-xl">
+        dashboard
+     </div>
     </>
   );
 }
