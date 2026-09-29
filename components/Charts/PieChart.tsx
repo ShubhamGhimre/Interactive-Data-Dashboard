@@ -12,7 +12,7 @@ interface PieChartProps {
 
 export default function PieChart({ data }: PieChartProps) {
   return (
-    <div className="w-full max-w-lg mx-auto">
+    <div className="w-[300px] h-[300px]">
       <Pie data={data} />
     </div>
   );
